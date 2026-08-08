@@ -217,6 +217,22 @@ color:white;
 .card-actions button:hover{
 opacity:0.85;
   }
+  .category-list{
+display:flex;
+gap:15px;
+overflow-x:auto;
+padding:10px 5px 15px;
+scrollbar-width:none;
+}
+
+.category-list::-webkit-scrollbar{
+display:none;
+}
+
+.category-list button{
+flex:0 0 auto;
+white-space:nowrap;
+    }
 </style>
 
 </head>
@@ -266,23 +282,7 @@ placeholder="🔍 Search wallpapers...">
 </div>
 
   </section>
-  <section class="categories">
 
-<h2>Explore Categories</h2>
-
-<div class="category-list">
-
-<button>Nature</button>
-<button>Cars</button>
-<button>Anime</button>
-<button>Space</button>
-<button>Gaming</button>
-<button>Minimal</button>
-<button>Abstract</button>
-
-</div>
-
-  </section>
 <section class="gallery">
 
 <h2>Trending Wallpapers</h2>
@@ -312,10 +312,36 @@ placeholder="🔍 Search wallpapers...">
 </div>
 </div>
 <div class="card" data-category="Nature">
-<div class="card" data-category="Cars">
-<div class="card" data-category="Anime">
-<div class="card" data-category="Space">
+  <img src="https://picsum.photos/400/800?random=21">
+  <div class="card-actions">
+    <button class="favorite-btn">♡</button>
+    <button class="download-btn">Download</button>
+  </div>
 </div>
+
+<div class="card" data-category="Cars">
+  <img src="https://picsum.photos/400/800?random=22">
+  <div class="card-actions">
+    <button class="favorite-btn">♡</button>
+    <button class="download-btn">Download</button>
+  </div>
+</div>
+
+<div class="card" data-category="Anime">
+  <img src="https://picsum.photos/400/800?random=23">
+  <div class="card-actions">
+    <button class="favorite-btn">♡</button>
+    <button class="download-btn">Download</button>
+  </div>
+</div>
+
+<div class="card" data-category="Space">
+  <img src="https://picsum.photos/400/800?random=24">
+  <div class="card-actions">
+    <button class="favorite-btn">♡</button>
+    <button class="download-btn">Download</button>
+  </div>
+  </div>
 
 </section>
 
