@@ -82,32 +82,217 @@ border:none;
 font-size:16px;
 cursor:pointer;
   }
+  .navbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:18px 20px;
+background:#111827;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+.nav-links{
+display:flex;
+gap:18px;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+font-size:15px;
+}
+
+.nav-links a:hover{
+color:#60a5fa;
+}
+
+@media(max-width:600px){
+
+.nav-links{
+gap:10px;
+}
+
+.nav-links a{
+font-size:12px;
+}
+
+.logo{
+font-size:24px;
+}
+
+  }
+  .search-box{
+max-width:700px;
+margin:30px auto;
+padding:0 20px;
+}
+
+.search-box input{
+width:100%;
+box-sizing:border-box;
+padding:16px 22px;
+border:1px solid #334155;
+border-radius:50px;
+background:#1e293b;
+color:white;
+font-size:16px;
+outline:none;
+}
+
+.search-box input::placeholder{
+color:#94a3b8;
+}
+
+.search-box input:focus{
+border-color:#3b82f6;
+  }
+  .categories{
+padding:20px;
+}
+
+.categories h2{
+margin-bottom:20px;
+}
+
+.category-list{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding:5px;
+justify-content:center;
+}
+
+.category-list button{
+border:1px solid #334155;
+background:#1e293b;
+color:white;
+padding:10px 18px;
+border-radius:30px;
+cursor:pointer;
+white-space:nowrap;
+}
+
+.category-list button:hover{
+background:#3b82f6;
+border-color:#3b82f6;
+  }
+  .card-actions{
+display:flex;
+gap:8px;
+padding:10px;
+}
+
+.card-actions button{
+border:none;
+cursor:pointer;
+font-size:15px;
+border-radius:8px;
+padding:10px;
+}
+
+.favorite-btn{
+width:45px;
+background:#334155;
+color:white;
+}
+
+.favorite-btn.active{
+background:#ef4444;
+color:white;
+}
+
+.download-btn{
+flex:1;
+background:#3b82f6;
+color:white;
+}
+
+.card-actions button:hover{
+opacity:0.85;
+  }
 </style>
 
 </head>
 
 <body>
 
-<header>
-Walleast
+<header class="navbar">
+
+<div class="logo">Walleast</div>
+
+<nav class="nav-links">
+<a href="#">Home</a>
+<a href="#categories">Categories</a>
+<a href="#premium">Premium</a>
+<a href="#about">About</a>
+</nav>
+
 </header>
 
 <section class="hero">
   <h1>Elevate Your Screen</h1>
-  <p>Premium AI & 4K Wallpapers</p>
-  <a href="#" class="button">Coming Soon</a>
+<p>Discover Premium AI Generated 4K Wallpapers for Mobile & Desktop.</p>
+<a href="#wallpapers" class="button">Explore Wallpapers</a>
 </section>
+<div class="search-box">
 
+<input
+type="text"
+id="searchInput"
+placeholder="🔍 Search wallpapers...">
+
+</div>
+  <section class="categories" id="categories">
+
+<h2>Explore Categories</h2>
+
+<div class="category-list">
+
+<button>AI</button>
+<button>AMOLED</button>
+<button>Nature</button>
+<button>Cars</button>
+<button>Anime</button>
+<button>Space</button>
+<button>Minimal</button>
+
+</div>
+
+  </section>
+  <section class="categories">
+
+<h2>Explore Categories</h2>
+
+<div class="category-list">
+
+<button>Nature</button>
+<button>Cars</button>
+<button>Anime</button>
+<button>Space</button>
+<button>Gaming</button>
+<button>Minimal</button>
+<button>Abstract</button>
+
+</div>
+
+  </section>
 <section class="gallery">
 
 <h2>Trending Wallpapers</h2>
 
 <div class="grid">
 
-<div class="card">
+<div class="card" data-category="Nature">
 <img src="https://picsum.photos/400/800?random=1">
 <button>Download</button>
-</div>
+  </div>
 
 <div class="card">
 <img src="https://picsum.photos/400/800?random=2">
@@ -121,9 +306,15 @@ Walleast
 
 <div class="card">
 <img src="https://picsum.photos/400/800?random=4">
-<button>Download</button>
+<div class="card-actions">
+  <button class="favorite-btn">♡</button>
+  <button class="download-btn">Download</button>
 </div>
-
+</div>
+<div class="card" data-category="Nature">
+<div class="card" data-category="Cars">
+<div class="card" data-category="Anime">
+<div class="card" data-category="Space">
 </div>
 
 </section>
@@ -131,6 +322,112 @@ Walleast
 <footer>
 © 2026 Walleast. All Rights Reserved.
 </footer>
+<script>
 
+const categoryButtons = document.querySelectorAll(".category-list button");
+const cards = document.querySelectorAll(".card");
+
+categoryButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const category = button.textContent;
+
+    cards.forEach(card => {
+
+      if (card.dataset.category === category) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+
+    });
+
+  });
+
+});
+
+  </script>
+<script>
+
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", () => {
+
+  const searchText = searchInput.value.toLowerCase();
+
+  cards.forEach(card => {
+
+    const category = card.dataset.category.toLowerCase();
+
+    if (category.includes(searchText)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+
+  });
+
+});
+
+</script>
+<script>
+
+const downloadButtons = document.querySelectorAll(".card button");
+
+downloadButtons.forEach((button, index) => {
+
+  button.addEventListener("click", () => {
+
+    const image = button.parentElement.querySelector("img");
+
+    const link = document.createElement("a");
+
+    link.href = image.src;
+    link.download = "Walleast-Wallpaper-" + (index + 1) + ".jpg";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+  });
+
+});
+
+</script>
+<script>
+
+const favoriteButtons = document.querySelectorAll(".favorite-btn");
+
+favoriteButtons.forEach((button, index) => {
+
+  button.addEventListener("click", () => {
+
+    button.classList.toggle("active");
+
+    if (button.classList.contains("active")) {
+      button.textContent = "♥";
+      localStorage.setItem("walleast-favorite-" + index, "true");
+    } else {
+      button.textContent = "♡";
+      localStorage.removeItem("walleast-favorite-" + index);
+    }
+
+  });
+
+});
+
+favoriteButtons.forEach((button, index) => {
+
+  if (localStorage.getItem("walleast-favorite-" + index) === "true") {
+    button.classList.add("active");
+    button.textContent = "♥";
+  }
+
+});
+
+</script>
 </body>
   </html>
