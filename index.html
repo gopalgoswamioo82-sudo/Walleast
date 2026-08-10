@@ -283,67 +283,87 @@ placeholder="🔍 Search wallpapers...">
 
   </section>
 
-<section class="gallery">
+<section class="gallery" id="wallpapers">
 
 <h2>Trending Wallpapers</h2>
 
 <div class="grid">
 
+<!-- Nature -->
 <div class="card" data-category="Nature">
-<img src="https://picsum.photos/400/800?random=1">
-<button>Download</button>
-  </div>
-
-<div class="card">
-<img src="https://picsum.photos/400/800?random=2">
-<button>Download</button>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/800?random=3">
-<button>Download</button>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/800?random=4">
+<img src="https://picsum.photos/400/800?random=1" alt="Nature Wallpaper">
 <div class="card-actions">
-  <button class="favorite-btn">♡</button>
-  <button class="download-btn">Download</button>
+<button class="favorite-btn">♡</button>
+<button class="download-btn">Download</button>
 </div>
-</div>
-<div class="card" data-category="Nature">
-  <img src="https://picsum.photos/400/800?random=21">
-  <div class="card-actions">
-    <button class="favorite-btn">♡</button>
-    <button class="download-btn">Download</button>
-  </div>
 </div>
 
+<!-- Cars -->
 <div class="card" data-category="Cars">
-  <img src="https://picsum.photos/400/800?random=22">
-  <div class="card-actions">
-    <button class="favorite-btn">♡</button>
-    <button class="download-btn">Download</button>
-  </div>
+<img src="https://picsum.photos/400/800?random=2" alt="Cars Wallpaper">
+<div class="card-actions">
+<button class="favorite-btn">♡</button>
+<button class="download-btn">Download</button>
+</div>
 </div>
 
+<!-- Anime -->
 <div class="card" data-category="Anime">
-  <img src="https://picsum.photos/400/800?random=23">
-  <div class="card-actions">
-    <button class="favorite-btn">♡</button>
-    <button class="download-btn">Download</button>
-  </div>
+<img src="https://picsum.photos/400/800?random=3" alt="Anime Wallpaper">
+<div class="card-actions">
+<button class="favorite-btn">♡</button>
+<button class="download-btn">Download</button>
+</div>
 </div>
 
+<!-- Space -->
 <div class="card" data-category="Space">
-  <img src="https://picsum.photos/400/800?random=24">
-  <div class="card-actions">
-    <button class="favorite-btn">♡</button>
-    <button class="download-btn">Download</button>
-  </div>
-  </div>
+<img src="https://picsum.photos/400/800?random=4" alt="Space Wallpaper">
+<div class="card-actions">
+<button class="favorite-btn">♡</button>
+<button class="download-btn">Download</button>
+</div>
+</div>
 
-</section>
+<!-- AI -->
+<div class="card" data-category="AI">
+<img src="https://picsum.photos/400/800?random=5" alt="AI Wallpaper">
+<div class="card-actions">
+<button class="favorite-btn">♡</button>
+<button class="download-btn">Download</button>
+</div>
+</div>
+
+<!-- AMOLED -->
+<div class="card" data-category="AMOLED">
+<img src="https://picsum.photos/400/800?random=6" alt="AMOLED Wallpaper">
+<div class="card-actions">
+<button class="favorite-btn">♡</button>
+<button class="download-btn">Download</button>
+</div>
+</div>
+
+<!-- Minimal -->
+<div class="card" data-category="Minimal">
+<img src="https://picsum.photos/400/800?random=7" alt="Minimal Wallpaper">
+<div class="card-actions">
+<button class="favorite-btn">♡</button>
+<button class="download-btn">Download</button>
+</div>
+</div>
+
+<!-- Nature -->
+<div class="card" data-category="Nature">
+<img src="https://picsum.photos/400/800?random=8" alt="Nature Wallpaper">
+<div class="card-actions">
+<button class="favorite-btn">♡</button>
+<button class="download-btn">Download</button>
+</div>
+</div>
+
+</div>
+
+  </section>
 
 <footer>
 © 2026 Walleast. All Rights Reserved.
@@ -399,8 +419,36 @@ searchInput.addEventListener("input", () => {
 </script>
 <script>
 
-const downloadButtons = document.querySelectorAll(".card button");
+<script>
 
+const downloadButtons = document.querySelectorAll(".download-btn");
+
+downloadButtons.forEach((button, index) => {
+
+  button.addEventListener("click", () => {
+
+    const image = button
+      .closest(".card")
+      .querySelector("img");
+
+    const link = document.createElement("a");
+
+    link.href = image.src;
+
+    link.download =
+      "Walleast-Wallpaper-" + (index + 1) + ".jpg";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+  });
+
+});
+
+</script>
 downloadButtons.forEach((button, index) => {
 
   button.addEventListener("click", () => {
